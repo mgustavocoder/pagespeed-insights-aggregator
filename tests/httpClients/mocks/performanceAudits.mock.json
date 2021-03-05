@@ -1,0 +1,30 @@
+{
+    "duplicated-javascript":{
+       "id":"duplicated-javascript",
+       "title":"Remove duplicate modules in JavaScript bundles",
+       "description":"Remove large, duplicate JavaScript modules from bundles to reduce unnecessary bytes consumed by network activity. ",
+       "score":1,
+       "scoreDisplayMode":"numeric",
+       "details":{
+          "items":[
+             
+          ],
+          "type":"opportunity",
+          "overallSavingsMs":0,
+          "overallSavingsBytes":0,
+          "headings":[
+             
+          ]
+       },
+       "numericValue":0
+    },
+    "first-meaningful-paint":{
+       "id":"first-meaningful-paint",
+       "title":"First Meaningful Paint",
+       "description":"First Meaningful Paint measures when the primary content of a page is visible. [Learn more](https://web.dev/first-meaningful-paint/).",
+       "score":0.62,
+       "scoreDisplayMode":"numeric",
+       "displayValue":"1.4 s",
+       "numericValue":1405.5
+    }
+ }
