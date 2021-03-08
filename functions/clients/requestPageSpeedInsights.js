@@ -1,11 +1,11 @@
 const get = require('lodash.get')
 const pagespeed = require('gpagespeed')
-const { parsePerformanceAudits } = require('./formatPsiResponse')
+const parsePerformanceAudits = require('../parsers/parsePerformanceAudits')
 
-async function requestInsights(url) {
+module.exports = async (url, key) => {
     const options = {
         url,
-        key: 'AIzaSyAKgdzyAElsbiBWrUL5FOBxwt24pwCMMk4'
+        key
     }
 
     try {
@@ -14,15 +14,16 @@ async function requestInsights(url) {
         const performanceAudits = get(response, 'lighthouseResult.audits')
         const loadingExperience = get(response, 'loadingExperience.overall_category')
         return {
+            url,
             performanceScore,
             performanceAudits: parsePerformanceAudits(performanceAudits),
             loadingExperience
         }
     } catch (err) {
-        console.log('Error', err)
+        return {
+            error: `Error to get insights for this url: ${url}`,
+            url,
+            message: err.message
+        }
     }
-}
-
-module.exports = {
-    requestInsights
 }

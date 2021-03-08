@@ -1,10 +1,30 @@
-const websiteInsights = require('./controllers/websiteInsights')
+const requestPagesFromSitemap = require('./functions/clients/requestPagesFromSitemap')
+const getInsightsListAsync = require('./functions/getInsightsListAsync')
 
-const pageInsigthsPromiseList = websiteInsights.getInsightsListAsync()
+async function getPSIPromiseListFromSiteMap(siteMapUrl, psiApiKey) {
+    let urls
+    try {
+        urls = await requestPagesFromSitemap(siteMapUrl)
+    } catch(err) {
+        return {
+            error: err.message
+        }
+    }
 
-pageInsigthsPromiseList.forEach(pageInsightsPromise => {
-    pageInsightsPromise.then(insights => {
-        console.log(typeof insights)
-    })
-})
+    const insightsPromises = getInsightsListAsync(urls, psiApiKey)
+    return {
+        urls,
+        insightsPromises
+    }
+}
 
+function getPSIPromiseListFromURLArray(urls, psiApiKey) {
+    return getInsightsListAsync(urls, psiApiKey)
+}
+
+
+
+module.exports = {
+    getPSIPromiseListFromSiteMap,
+    getPSIPromiseListFromURLArray
+}
