@@ -2,11 +2,11 @@
 This module expose functions which returns a list of promises that performs Page Speed Analisys
 using the google PSI API.
 
-* getPSIPromiseListFromSiteMap(sitemap.xml url)
+* getPSIPromiseListFromSiteMap(sitemap.xml url, pagespeed api key string)
   * Get the list of urls to be analysed from a given sitemap.xml page.
 
 
-* getPSIPromiseListFromURLArray(urls as an array)
+* getPSIPromiseListFromURLArray(urls as an array, pagespeed api key string)
   * Accepts the list of pages to be analysed as a parameter.
 
 ## Usage:
@@ -16,7 +16,9 @@ const { getPSIPromiseListFromSiteMap, getPSIPromiseListFromURLArray} = require('
 ```
 async function run() {
     const sitemapUrl = 'https://www.jnjbrasil.com.br/sitemap.xml'
-    const resp = await getPSIPromiseListFromSiteMap(sitemapUrl)
+    const pageSpeedApiKey = 'your_pagespeed_api_key'
+
+    const resp = await getPSIPromiseListFromSiteMap(sitemapUrl, pageSpeedApiKey)
     
     if (!resp.error) {
         console.log(`URL: ${resp.urls}`)
@@ -63,7 +65,9 @@ run()
 ## getPSIPromiseListFromURLArray:
 ```
 const urls = ['http://www.sprite.com', 'https://www.sprite.com/products']
-const insightsPromises = getPSIPromiseListFromURLArray(urls)
+const pageSpeedApiKey = 'your_pagespeed_api_key'
+
+const insightsPromises = getPSIPromiseListFromURLArray(urls, pageSpeedApiKey)
 insightsPromises.forEach(promise => {
     promise.then(insights => {
         console.log(insights)

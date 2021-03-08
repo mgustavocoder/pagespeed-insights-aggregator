@@ -22,7 +22,15 @@ function getPSIPromiseListFromURLArray(urls, psiApiKey) {
     return getInsightsListAsync(urls, psiApiKey)
 }
 
+const urls = ['http://www.sprite.com', 'https://www.sprite.com/products']
+const pageSpeedApiKey = 'your_pagespeed_api_key'
 
+const insightsPromises = getPSIPromiseListFromURLArray(urls, pageSpeedApiKey)
+insightsPromises.forEach(promise => {
+    promise.then(insights => {
+        console.log(insights)
+    })
+})
 
 module.exports = {
     getPSIPromiseListFromSiteMap,
