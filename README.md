@@ -1,6 +1,5 @@
 # Description
-This module expose functions which returns a list of promises that performs Page Speed Analisys
-using the google PSI API.
+This module expose functions which returns a list of promises that performs Page Speed Analisys using the google PSI API.
 
 * getPSIPromiseListFromSiteMap(sitemap.xml url, pagespeed api key string)
   * Get the list of urls to be analysed from a given sitemap.xml page.
